@@ -3,6 +3,9 @@ vim.api.nvim_set_keymap('i', '[', '[]<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '{', '{}<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '"', '""<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', "'", "''<Left>", { noremap = true })
+vim.api.nvim_set_keymap('i', ')', 'v:lua.CustomFunctions.closeParenthesis()', { expr = true, noremap = true })
+vim.api.nvim_set_keymap('i', '}', 'v:lua.CustomFunctions.closeBraces()', { expr = true, noremap = true })
+vim.api.nvim_set_keymap('i', ']', 'v:lua.CustomFunctions.closeBrackets()', { expr = true, noremap = true })
 vim.api.nvim_set_keymap('i', '<BS>', 'v:lua.CustomFunctions.backspace()', { expr = true, noremap = true })
 vim.api.nvim_set_keymap('i', '<CR>', 'v:lua.CustomFunctions.enter()', { expr = true, noremap = true })
 vim.api.nvim_set_keymap('i', ';', 'v:lua.CustomFunctions.semicolon()', { expr = true, noremap = true })
@@ -55,4 +58,40 @@ function CustomFunctions.semicolon()
 
   -- Default behavior for Enter key
   return vim.api.nvim_replace_termcodes(';', true, true, true)
+end
+
+function CustomFunctions.closeParenthesis()
+  local line = vim.fn.getline '.'
+  local col = vim.fn.col '.'
+  local next_char = line:sub(col, col)
+
+  if next_char == ')' then
+    return vim.api.nvim_replace_termcodes('<Right>', true, true, true)
+  end
+
+  return vim.api.nvim_replace_termcodes(')', true, true, true)
+end
+
+function CustomFunctions.closeBraces()
+  local line = vim.fn.getline '.'
+  local col = vim.fn.col '.'
+  local next_char = line:sub(col, col)
+
+  if next_char == '}' then
+    return vim.api.nvim_replace_termcodes('<Right>', true, true, true)
+  end
+
+  return vim.api.nvim_replace_termcodes('}', true, true, true)
+end
+
+function CustomFunctions.closeBrackets()
+  local line = vim.fn.getline '.'
+  local col = vim.fn.col '.'
+  local next_char = line:sub(col, col)
+
+  if next_char == ']' then
+    return vim.api.nvim_replace_termcodes('<Right>', true, true, true)
+  end
+
+  return vim.api.nvim_replace_termcodes(']', true, true, true)
 end
