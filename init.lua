@@ -1,4 +1,5 @@
 require 'custom.custom'
+-- require 'custom.markdown-preview'
 --[[
 
 =====================================================================
@@ -834,6 +835,8 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          -- my changes
+          { name = 'codeium' },
         },
       }
     end,
