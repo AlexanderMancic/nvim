@@ -1,4 +1,4 @@
-require 'custom.custom'
+require 'custom.auto-pairs'
 -- require 'custom.markdown-preview'
 --[[
 
