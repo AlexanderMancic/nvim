@@ -1,4 +1,5 @@
 require 'custom.auto-pairs'
+require 'custom.win32yank'
 -- require 'custom.markdown-preview'
 --[[
 
